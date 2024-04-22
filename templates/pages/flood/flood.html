@@ -1,0 +1,361 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<form action="{% url 'flood' %}" method="post" enctype="multipart/form-data">
+
+<div class="py-4">
+  <div class="dropdown">
+    <button class="btn btn-gray-800 d-inline-flex align-items-center me-2 dropdown-toggle" data-bs-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false">
+      <svg class="icon icon-xs me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+      </svg>
+          Upload CSV File
+    </button>
+    <div class="dropdown-menu dashboard-dropdown dropdown-menu-start mt-2 py-1">
+
+      <!-- Modified dropdown item to include file input and upload button -->
+      <label class="dropdown-item d-flex align-items-center" for="fileInput">
+        <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor" viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg">
+          <path d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z">
+          </path>
+          <path d="M9 13h2v5a1 1 0 11-2 0v-5z"></path>
+        </svg>
+
+          <input class="form-control" type="file" id="csv_upload" name="csv_upload" accept=".csv">
+        Upload CSV File
+      </label>
+        {% csrf_token %}
+      <!-- Upload button -->
+        <input class="btn btn-primary" type="submit" value='Upload'>
+    </div>
+  </div>
+</div>
+</form>
+
+
+
+
+
+
+<script>
+  // JavaScript to handle file upload
+  document.getElementById('fileInput').addEventListener('change', function (event) {
+    const file = event.target.files[0];
+    if (file) {
+      // Check if the uploaded file is a CSV file
+      if (file.type === 'text/csv' || file.name.endsWith('.csv')) {
+        // Enable the upload button
+        document.getElementById('uploadButton').disabled = false;
+      } else {
+        // Disable the upload button and reset the file input
+        document.getElementById('uploadButton').disabled = true;
+        event.target.value = '';
+        // Alert the user if the uploaded file is not a CSV file
+        alert('Please upload a CSV file.');
+      }
+    } else {
+      // If no file is selected, disable the upload button
+      document.getElementById('uploadButton').disabled = true;
+    }
+  });
+</script>
+
+
+<form action="{% url 'flood' %}" method="post" enctype="multipart/form-data">
+    <div class="container py-4">
+        <h4 class="mb-4">Flood Factors</h4>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="MonsoonIntensity" class="form-label">Monsoon Intensity:</label>
+                    <input type="number" class="form-control" id="MonsoonIntensity" name="MonsoonIntensity" min="0" max="16" placeholder="Enter value between 0 and 16">
+                </div>
+                <div class="mb-3">
+                    <label for="TopographyDrainage" class="form-label">Topography Drainage:</label>
+                    <input type="number" class="form-control" id="TopographyDrainage" name="TopographyDrainage" min="0" max="18" placeholder="Enter value between 0 and 18">
+                </div>
+                <div class="mb-3">
+                    <label for="RiverManagement" class="form-label">River Management:</label>
+                    <input type="number" class="form-control" id="RiverManagement" name="RiverManagement" min="0" max="16" placeholder="Enter value between 0 and 16">
+                </div>
+                <div class="mb-3">
+                    <label for="Deforestation" class="form-label">Deforestation:</label>
+                    <input type="number" class="form-control" id="Deforestation" name="Deforestation" min="0" max="17" placeholder="Enter value between 0 and 17">
+                </div>
+                <div class="mb-3">
+                    <label for="Urbanization" class="form-label">Urbanization:</label>
+                    <input type="number" class="form-control" id="Urbanization" name="Urbanization" min="0" max="17" placeholder="Enter value between 0 and 17">
+                </div>
+                <div class="mb-3">
+                    <label for="ClimateChange" class="form-label">Climate Change:</label>
+                    <input type="number" class="form-control" id="ClimateChange" name="ClimateChange" min="0" max="17" placeholder="Enter value between 0 and 17">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="DamsQuality" class="form-label">Dams Quality:</label>
+                    <input type="number" class="form-control" id="DamsQuality" name="DamsQuality" min="0" max="16" placeholder="Enter value between 0 and 16">
+                </div>
+                <div class="mb-3">
+                    <label for="Siltation" class="form-label">Siltation:</label>
+                    <input type="number" class="form-control" id="Siltation" name="Siltation" min="0" max="16" placeholder="Enter value between 0 and 16">
+                </div>
+                <div class="mb-3">
+                    <label for="AgriculturalPractices" class="form-label">Agricultural Practices:</label>
+                    <input type="number" class="form-control" id="AgriculturalPractices" name="AgriculturalPractices" min="0" max="16" placeholder="Enter value between 0 and 16">
+                </div>
+                <div class="mb-3">
+                    <label for="Encroachments" class="form-label">Encroachments:</label>
+                    <input type="number" class="form-control" id="Encroachments" name="Encroachments" min="0" max="18" placeholder="Enter value between 0 and 18">
+                </div>
+                <div class="mb-3">
+                    <label for="IneffectiveDisasterPreparedness" class="form-label">Ineffective Disaster Preparedness:</label>
+                    <input type="number" class="form-control" id="IneffectiveDisasterPreparedness" name="IneffectiveDisasterPreparedness" min="0" max="16" placeholder="Enter value between 0 and 16">
+                </div>
+                <div class="mb-3">
+                    <label for="DrainageSystems" class="form-label">Drainage Systems:</label>
+                    <input type="number" class="form-control" id="DrainageSystems" name="DrainageSystems" min="0" max="17" placeholder="Enter value between 0 and 17">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="CoastalVulnerability" class="form-label">Coastal Vulnerability:</label>
+                    <input type="number" class="form-control" id="CoastalVulnerability" name="CoastalVulnerability" min="0" max="17" placeholder="Enter value between 0 and 17">
+                </div>
+                <div class="mb-3">
+                    <label for="Landslides" class="form-label">Landslides:</label>
+                    <input type="number" class="form-control" id="Landslides" name="Landslides" min="0" max="16" placeholder="Enter value between 0 and 16">
+                </div>
+                <div class="mb-3">
+                    <label for="Watersheds" class="form-label">Watersheds:</label>
+                    <input type="number" class="form-control" id="Watersheds" name="Watersheds" min="0" max="16" placeholder="Enter value between 0 and 16">
+                </div>
+                <div class="mb-3">
+                    <label for="DeterioratingInfrastructure" class="form-label">Deteriorating Infrastructure:</label>
+                    <input type="number" class="form-control" id="DeterioratingInfrastructure" name="DeterioratingInfrastructure" min="0" max="17" placeholder="Enter value between 0 and 17">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="PopulationScore" class="form-label">Population Score:</label>
+                    <input type="number" class="form-control" id="PopulationScore" name="PopulationScore" min="0" max="19" placeholder="Enter value between 0 and 19">
+                </div>
+                <div class="mb-3">
+                    <label for="WetlandLoss" class="form-label">Wetland Loss:</label>
+                    <input type="number" class="form-control" id="WetlandLoss" name="WetlandLoss" min="0" max="22" placeholder="Enter value between 0 and 22">
+                </div>
+                <div class="mb-3">
+                    <label for="InadequatePlanning" class="form-label">Inadequate Planning:</label>
+                    <input type="number" class="form-control" id="InadequatePlanning" name="InadequatePlanning" min="0" max="16" placeholder="Enter value between 0 and 16">
+                </div>
+                <div class="mb-3">
+                    <label for="PoliticalFactors" class="form-label">Political Factors:</label>
+                    <input type="number" class="form-control" id="PoliticalFactors" name="PoliticalFactors" min="0" max="16" placeholder="Enter value between 0 and 16">
+                </div>
+            </div>
+        </div>
+
+        {% csrf_token %}
+        <input class="btn btn-primary" type="submit" value='Show result'>
+  </div>
+</form>
+
+
+
+
+<div id="outputSection" class="container py-4" style="display: none;">
+  <h4 class="mb-3">Predictions</h4>
+  <p id="svrPrediction"></p>
+  <p id="dtPrediction"></p>
+  <p id="mlpPrediction"></p>
+  <p id="lrPrediction"></p>
+</div>
+
+
+
+<script>
+  // Function to check if all input fields are filled
+  function checkInputs() {
+    // Get all input fields
+    var inputs = document.querySelectorAll('input[type="text"]');
+    for (var i = 0; i < inputs.length; i++) {
+      // If any input field is empty, return false
+      if (inputs[i].value === '') {
+        return false;
+      }
+    }
+    // Return true if all input fields are filled
+    return true;
+  }
+
+  // Function to enable or disable the Predict button based on input fields
+  function togglePredictButton() {
+    var predictButton = document.getElementById('Predict');
+    // Check if all input fields are filled
+    var allInputsFilled = checkInputs();
+    // Enable or disable Predict button based on allInputsFilled
+    predictButton.disabled = !allInputsFilled;
+  }
+
+  // Function to display predictions
+  function showPredictions(svr_prediction, dt_prediction, mlp_prediction, lr_prediction) {
+    var outputSection = document.getElementById('outputSection');
+    outputSection.style.display = 'block'; // Show the output section
+
+    // Update the prediction paragraphs with the received predictions
+    document.getElementById('svr_prediction').textContent = "SVR Prediction: " + svr_prediction;
+    document.getElementById('dt_prediction').textContent = "Decision Tree Prediction: " + dt_prediction;
+    document.getElementById('mlp_prediction').textContent = "MLP Prediction: " + mlp_prediction;
+    document.getElementById('lr_prediction').textContent = "Linear Regression Prediction: " + lr_prediction;
+
+    // Enable Predict button after showing predictions
+    togglePredictButton();
+  }
+
+  // Function to handle AJAX request
+  function makePredictions() {
+    // Collect data from input fields
+    var inputData = {
+      MonsoonIntensity: document.getElementById('MonsoonIntensity').value,
+      TopographyDrainage: document.getElementById('TopographyDrainage').value,
+      RiverManagement: document.getElementById('RiverManagement').value,
+      // Add other input fields here
+    };
+
+    // Make AJAX request to the server
+    $.ajax({
+      type: "POST",
+      url: "{% url 'flood' %}",
+      data: inputData,
+      success: function(data) {
+        // Assuming the server returns the predictions in JSON format
+        // Call the showPredictions function to display predictions
+        showPredictions(data.svrPrediction, data.dtPrediction, data.mlpPrediction, data.lrPrediction);
+      },
+      error: function(xhr, status, error) {
+        // Handle error
+        console.error(xhr.responseText);
+      }
+    });
+  }
+
+  // Add event listener to Predict button
+  document.getElementById('Predict').addEventListener('click', function() {
+    // Call the makePredictions function when Predict button is clicked
+    makePredictions();
+  });
+
+  // Add event listeners to input fields to check for changes
+  var inputs = document.querySelectorAll('input[type="text"]');
+  for (var i = 0; i < inputs.length; i++) {
+    inputs[i].addEventListener('input', togglePredictButton);
+  }
+</script>
+
+<script>
+  // Function to handle AJAX request
+  function makePredictions(inputData) {
+    // Make AJAX request to the server
+    $.ajax({
+      type: "POST",
+      url: "{% url 'flood' %}",
+      data: inputData,
+      success: function(data) {
+        // Assuming the server returns the predictions in JSON format
+        // Display predictions
+        $('#outputSection').show();
+        $('#svrPrediction').text("SVR Prediction: " + data.svrPrediction);
+        $('#dtPrediction').text("Decision Tree Prediction: " + data.dtPrediction);
+        $('#mlpPrediction').text("MLP Prediction: " + data.mlpPrediction);
+        $('#lrPrediction').text("Linear Regression Prediction: " + data.lrPrediction);
+      },
+      error: function(xhr, status, error) {
+        // Handle error
+        console.error(xhr.responseText);
+      }
+    });
+  }
+
+  $(document).ready(function() {
+    // Handle click event on the "Show result" button
+    $('#showResultButton').click(function() {
+      // Collect data from input fields
+      var inputData = {
+        MonsoonIntensity: $('#MonsoonIntensity').val(),
+        TopographyDrainage: $('#TopographyDrainage').val(),
+        RiverManagement: $('#RiverManagement').val(),
+        // Add other input fields here
+      };
+
+      // Make predictions using AJAX
+      makePredictions(inputData);
+    });
+  });
+</script>
+
+
+
+
+
+
+  <!-- Output section -->
+  <div id="outputSection" class="mt-4" style="display: none;">
+    <h4 class="mb-3">Predictions</h4>
+    <p id="svrPrediction"></p>
+    <p id="dtPrediction"></p>
+    <p id="mlpPrediction"></p>
+    <p id="lrPrediction"></p>
+  </div>
+
+ <script>
+    // Function to handle AJAX request
+    function makePredictions() {
+      // Collect data from input fields
+      var inputData = {
+        MonsoonIntensity: document.getElementById('MonsoonIntensity').value,
+        TopographyDrainage: document.getElementById('TopographyDrainage').value,
+        RiverManagement: document.getElementById('RiverManagement').value,
+        // Add other input fields here
+      };
+
+      // Make AJAX request to the server
+      $.ajax({
+        type: "POST",
+        url: "{% url 'flood' %}",
+        data: inputData,
+        success: function(data) {
+          // Assuming the server returns the predictions in JSON format
+          // Update the HTML elements with the predicted values
+          document.getElementById('svrPrediction').textContent = "SVR Prediction: " + data.svr_prediction;
+          document.getElementById('dtPrediction').textContent = "Decision Tree Prediction: " + data.dt_prediction;
+          document.getElementById('mlpPrediction').textContent = "MLP Prediction: " + data.mlp_prediction;
+          document.getElementById('lrPrediction').textContent = "Linear Regression Prediction: " + data.lr_prediction;
+          // Show the result section
+          document.getElementById('outputSection').style.display = 'block';
+        },
+        error: function(xhr, status, error) {
+          // Handle error
+          console.error(xhr.responseText);
+        }
+      });
+    }
+
+    // Add event listener to "Show result" button
+    document.getElementById('showResultButton').addEventListener('click', function() {
+      // Call the makePredictions function when the button is clicked
+      makePredictions();
+    });
+  </script>
+
+
+
+
+
+{% endblock content %}

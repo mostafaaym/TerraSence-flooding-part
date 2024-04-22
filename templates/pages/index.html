@@ -1,0 +1,246 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  {% include 'includes/head.html' %}
+</head>
+
+<body>
+  <header class="header-global">
+    <nav id="navbar-main" aria-label="Primary navigation"
+      class="navbar navbar-main navbar-expand-lg navbar-theme-primary pt-4 navbar-dark">
+      <div class="container position-relative">
+        <div class="navbar-collapse collapse me-auto" id="navbar_global">
+          <div class="navbar-collapse-header">
+            <div class="row">
+              <div class="col-6 collapse-brand">
+                <a href="{% url 'index' %}">
+                  <img src="{% static 'assets/img/brand/laight.svg' %}" alt="Volt logo">
+                </a>
+              </div>
+              <div class="col-6 collapse-close">
+                <a href="#navbar_global" class="fas fa-times" data-toggle="collapse" data-target="#navbar_global"
+                  aria-controls="navbar_global" aria-expanded="false" title="close" aria-label="Toggle navigation"></a>
+              </div>
+            </div>
+          </div>
+
+          <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
+            <li class="nav-item me-2">
+              <a href="{% url 'flood' %}" class="nav-link">Flood Prediction</a>
+            </li>
+            <li class="nav-item me-2">
+              <a href="{% url 'flood' %}" class="nav-link">Earthquake Prediction</a>
+            </li>
+            {% if request.user.is_authenticated %}
+              <li class="nav-item me-2">
+                <a href="{% url 'logout' %}" class="nav-link">Logout</a>
+              </li>
+            {% else %}
+              <li class="nav-item me-2">
+                <a href="{% url 'login' %}" class="nav-link">Login</a>
+              </li>
+              <li class="nav-item me-2">
+                <a href="{% url 'register' %}" class="nav-link">Register</a>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="section-header overflow-hidden pt-7 pt-lg-8 pb-9 pb-lg-12 bg-primary text-white">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 text-center">
+            <img src="{% static '/assets/img/logo2.png' %}" alt="TerraSence Logo">
+            <h1 class="fw-bolder">TerraSence</h1>
+            <h2 class="lead fw-normal text-muted mb-5">Flood & Earthquake Prediction</h2>
+          </div>
+        </div>
+      </div>
+
+      <figure class="position-absolute bottom-0 left-0 w-100 d-none d-md-block mb-n2">
+        <svg class="home-pattern"
+          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3000 185.4">
+          <path d="M3000,0v185.4H0V0c496.4,115.6,996.4,173.4,1500,173.4S2503.6,115.6,3000,0z"></path>
+        </svg>
+      </figure>
+
+    </section>
+
+
+    <div class="section pt-0">
+      <div class="container mt-n10 mt-lg-n12 z-2">
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <img src="{% static '/assets/img/Flood & Earthquake/1.png' %}" alt="Flood">
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="section section-lg bg-soft pt-0">
+      <div class="container">
+        <div class="row justify-content-center mb-5 mb-lg-6">
+          <div class="col-6 col-md-3 text-center mb-4">
+
+          </div>
+
+
+          <div class="col-6 col-md-3 text-center mb-4">
+
+          </div>
+
+
+          <div class="col-6 col-md-3 text-center">
+
+          </div>
+
+
+
+          <div class="col-6 col-md-3 text-center">
+
+          </div>
+        </div>
+
+
+
+        <div class="row justify-content-between align-items-center mb-5 mb-lg-7">
+          <div class="row justify-content-between align-items-center">
+            <div class="col-lg-5 order-lg-2 mb-5 mb-lg-0">
+              <h2 class="h1">Flood Prediction</h2>
+              <p class="mb-4 lead fw-bold">Flood Prediction for many models</p>
+              <p class="mb-4">Flood Prediction is a project for detect Floods in world</p>
+            </div>
+            <div class="col-lg-6 order-lg-1">
+              <img src="{% static '/assets/img/1.jpg' %}" alt="Front pages overview">
+            </div>
+          </div>
+
+
+          <div class="col-lg-5 mb-5 mb-lg-0">
+            <h2 class="h1 d-flex align-items-center">Earthquake Prediction
+              <span
+                class="ms-3 mb-0 fs-6 badge badge-lg rounded-pill text-gray-800 bg-secondary"></span>
+            </h2>
+
+            <p class="mb-4 lead fw-bold">Earthquake Prediction for many models</p>
+            <p class="mb-4">Earthquake Prediction is a project for detect Earthquake in world.</p>
+
+          </div>
+          <div class="col-lg-6">
+            <img src="{% static '/assets/img/5.jpg' %}" alt="Kanban Preview">
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+  <footer class="footer py-6 bg-gray-800 text-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <p>Earthquake & Flood Prediction</p>
+          <ul class="social-buttons mb-5 mb-lg-0">
+            <li>
+              <a href="https://twitter.com/themesberg" aria-label="twitter social link" class="icon-white me-2">
+                <span class="fab fa-twitter"></span>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.facebook.com/themesberg/" class="icon-white me-2" aria-label="facebook social link">
+                <span class="fab fa-facebook"></span>
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/themesberg" aria-label="github social link" class="icon-white me-2">
+                <span class="fab fa-github"></span>
+              </a>
+            </li>
+            <li>
+              <a href="https://dribbble.com/themesberg" class="icon-white" aria-label="dribbble social link">
+                <span class="fab fa-dribbble"></span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-md-2 mb-5 mb-lg-0">
+          <span class="h5">Other links</span>
+          <ul class="links-vertical mt-2">
+            <li><a target="_blank" href="#">Blog</a></li>
+            <li><a target="_blank" href="#">Products</a></li>
+            <li><a target="_blank" href="#">About Us</a></li>
+            <li><a target="_blank" href="#">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-md-2 mb-5 mb-lg-0">
+          <span class="h5">Other links</span>
+          <ul class="links-vertical mt-2">
+            <li>
+              <a href="#"
+                target="_blank">Docs
+            </a>
+            </li>
+            <li><a href="#"
+                target="_blank">Changelog</a></li>
+            <li><a target="_blank" href="#">License</a>
+            </li>
+            <li><a target="_blank" href="#">Support</a></li>
+          </ul>
+        </div>
+
+
+        <div class="col-12 col-md-4 mb-5 mb-lg-0">
+          <span class="h5 mb-3 d-block">Subscribe</span>
+          <form action="#">
+            <div class="form-row mb-2">
+              <div class="col-12">
+                <input type="email" class="form-control mb-2" placeholder="example@company.com" name="email"
+                  aria-label="Subscribe form" required>
+              </div>
+              <div class="col-12 d-grid">
+                <button type="submit" class="btn btn-secondary" data-loading-text="Sending">
+                  <span>Subscribe</span>
+                </button>
+              </div>
+            </div>
+          </form>
+          <p class="text-muted font-small m-0">We’ll never share your details. See our <a class="text-white"
+              href="#">Privacy Policy</a></p>
+        </div>
+      </div>
+
+      <hr class="bg-gray-700 my-5">
+      <div class="row">
+        <div class="col mb-md-0">
+          <a href="#" target="_blank" class="d-flex justify-content-center">
+            <img src="{% static 'assets/img/logo2.png' %}" height="35" class="mb-4" alt="Themesberg Logo">
+          </a>
+          <div class="d-flex text-center justify-content-center align-items-center" role="contentinfo">
+            <p class="fw-normal font-small mb-0">
+              &copy; TerraSence - Coded by Progc Solution.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  {% include 'includes/scripts.html' %}
+  <!-- End Scripts -->
+
+</body>
+
+</html>

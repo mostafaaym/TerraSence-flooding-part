@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head> 
+  {% include 'includes/head.html' %}
+  {% block extrastyle %}{% endblock extrastyle %}
+  {% block extrahead %}{% endblock extrahead %}
+  <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flood Result</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include DataTables.js -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script>
+
+
+
+
+
+    <style>
+        /* CSS styles for the table and chart */
+        table {
+            width: 100%;
+            margin-bottom: 20px;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        canvas {
+            width: 800px; /* Set the width of the canvas */
+            height: 400px; /* Set the height of the canvas */
+            margin: 0 auto;
+            display: block;
+        }
+    </style>
+
+
+</head>
+
+  {% block nav %}
+    {% include 'includes/nav.html' %}
+  {% endblock nav %}
+
+  {% block sidebar %}
+    {% include 'includes/sidebar.html' %}
+  {% endblock sidebar %}
+
+  <main class="content">
+    {% block header %}
+      {% include 'includes/navigation.html' %}
+    {% endblock header %}
+
+    {% block content %}{% endblock content %}
+
+    {% block theme_settings %}
+      {% include 'includes/theme-settings.html' %}
+    {% endblock theme_settings %}
+
+    {% block footer %}
+      {% include 'includes/footer.html' %}
+    {% endblock footer %}
+
+  </main>
+
+  {% include 'includes/scripts.html' %}
+  {% block extra_js %}{% endblock extra_js %}
+<body>
