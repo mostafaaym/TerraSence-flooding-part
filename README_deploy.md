@@ -1,9 +1,9 @@
-How to deploy on Render
+#How to deploy on Render
 This document should contains all the steps to deploy the app on render without much effort, using PostgreSQL
 
 https://render.com/docs/deploy-django
 
-ALL STEPS below
+#ALL STEPS below
 
 👉 Create PostgreSQL database on render
 Go to https://dashboard.render.com/new/database this link.
